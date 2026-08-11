@@ -1,0 +1,516 @@
+\section{Attribution}
+
+Almost every tool used here belongs to someone else; we state this at the outset
+rather than in a footnote.
+
+\begin{center}
+\begin{tabular}{@{}p{7.4cm}l@{}}
+\toprule
+ingredient & due to \\
+\midrule
+the probabilistic formulation $p_d:=\mathbf{P}(\mathbf{c}(0)=\mathbf{c}(d))$
+& Tao, threads 3--4~\cite{Polymath16} \\
+the LP pipeline: incidence matrix over colourings, $\min x_d$ subject to
+$Aw=\sum_d x_d\mathbf{1}_d$ & Mixon and Alexeev, thread 4~\cite{Polymath16} \\
+Lemmas 12--40 of the wiki at $k=4$ & Polymath16, collectively~\cite{Polymath16} \\
+$\pk{k}{d}<1/2$ for every $d>1/2$ and every $k$ & P\'alv\"olgyi, thread 12~\cite{Polymath16} \\
+$\pk{4}{2}\ge 1/4$ via a $17$-vertex graph & Parshall, Mixon and Alexeev~\cite{Polymath16} \\
+the equilateral-pentagon inequality at $k=4$ & Chroman, thread 4~\cite{Polymath16} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+What is new is the transfer of that machine to a level at which it had not been
+run, the classification of what survives the transfer, and two corrections to
+the published $k=4$ table.
+
+\paragraph{Wider context.} The Hadwiger--Nelson problem itself goes back to
+de Bruijn and Erd\H{o}s's compactness reduction for infinite colouring
+problems~\cite{deBruijnErdos1951} and is surveyed at length by
+Soifer~\cite{Soifer2008}. The lower bound $\chrom(\R^2)\ge5$ is due to
+de Grey~\cite{deGrey2018}, with an independent proof by Exoo and
+Ismailescu~\cite{ExooIsmailescu2018a}; Heule's SAT search subsequently produced
+much smaller $5$-chromatic unit-distance graphs~\cite{Heule2018}, further
+minimised by Parts~\cite{Parts2020}. Related quantitative work includes Croft's
+bound on the density of unit-distance-avoiding planar sets~\cite{Croft1967}, its
+improvement by Ambrus, Csisz\'arik, Matolcsi, Varga and
+Zsámboki~\cite{Ambrus2022}, and the fractional chromatic number bounds of
+Cranston and Rabern~\cite{CranstonRabern2015}. Frankl, Hubai and
+P\'alv\"olgyi's almost-monochromatic-sets technique~\cite{FranklHubaiPalvolgyi2019}
+and the classical results of Thomassen~\cite{Thomassen1999} and
+Woodall~\cite{Woodall1973} on the unit-distance colouring problem bear on the
+same circle of questions, though none of the above is used directly below.
+
+\section{Preliminaries}
+
+Assume a proper $k$-colouring $c:\CC\to\{1,\dots,k\}$ exists. Since
+$S_k\times E(2)$ is solvable, hence amenable, it carries a left-invariant
+finitely additive probability measure $\mu$. Put $\mathbf{c}=\sigma\circ c\circ
+T^{-1}$ with $(\sigma,T)\sim\mu$ and
+\[
+\pk{k}{d} \;:=\; \mathbf{P}\big(\mathbf{c}(0)=\mathbf{c}(d)\big).
+\]
+Every subset is $\mu$-measurable, so no measurability hypothesis on $c$ is
+needed. The quantity is invariant under colour permutations and isometries and
+depends on $d$ alone. Immediately $p_0=1$ and $p_1=0$.
+
+\begin{proposition}
+\label{prop:half}
+For every $k$ and every $d\ge1/2$, $\ \pk{k}{d}\le 1/2$.
+\end{proposition}
+
+This is Lemma 2 of the wiki; the proof is reproduced in \Cref{sec:appendixA}
+because everything below rests on the fact that it \emph{counts no colours} and
+so holds for every $k$.
+
+\begin{remark}[a clash of notation]
+Gwyn and Stavrianos~\cite{GwynStavrianos2020} work at $k=5$ with a quantity also
+written $p_k$: the probability that a random \emph{unit} edge is monochromatic
+in a colouring not assumed proper --- a measure of badness. The $p_d$ here
+concerns \emph{non-unit} distances under a colouring assumed proper. The two
+are unrelated.
+\end{remark}
+
+\section{Which lemmas survive the passage to $k=5$}
+
+\subsection{The criterion}
+
+Ask of each lemma what role the number of colours plays in its \emph{proof}.
+Three cases occur.
+
+\begin{center}
+\begin{tabular}{@{}lp{4.9cm}p{3.5cm}l@{}}
+\toprule
+class & mechanism & examples & at $k=5$ \\
+\midrule
+$k$-free & the proof counts no colours, only incompatibility
+& L2, L12, L17, L34, \textbf{L38}, L30/C31/L32 & transfer verbatim \\
+$k$ in the constant & argument intact, one numerical input changes
+& Corollary 16 and descendants & recomputed \\
+$k$ in the structure & pigeonhole over $k+1$ points, or the four
+$4$-colourings of $H$ & L15, C16, L19, L22, L23--27, P35, P36 & collapse \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Lemma 38 deserves a line, since everything below rests on it: for a unit
+equilateral triangle $ABC$ and any point $D$, the vertices $A,B,C$ are pairwise
+distinct in colour, so at most one of $AD$, $BD$, $CD$ is monochromatic, whence
+\[
+p_{|AD|}+p_{|BD|}+p_{|CD|}\;\le\;1 .
+\]
+No colour is counted; the lemma is $k$-free.
+
+The cost to the upper bounds is severe. The bare bound $p_d\le1/2$ survives, but
+\emph{every} improvement of it --- $1/2-1/62$, $0.48$, $323/675$ --- sits in the
+third class and is lost. At $k=5$ one restarts from Lemma 2.
+
+\begin{remark}[a lemma that looks $k$-free and is not]
+Chroman~\cite{Polymath16} proved that for any equilateral pentagon $ABCDE$, possibly
+self-intersecting, with diagonals $v,w,x,y,z$, one has
+$1\le p_v+p_w+p_x+p_y+p_z\le2$. The statement never mentions four. But the lower
+half is a pigeonhole over five points and four colours: some pair repeats a
+colour; the sides are unit, hence bichromatic; so a diagonal is monochromatic.
+With five colours the five points can take five distinct colours and nothing is
+forced.
+\end{remark}
+
+\begin{quote}
+The criterion is not whether $k$ appears in the statement, but whether it
+appears in the proof.
+\end{quote}
+
+\subsection{The hexagon lemma}
+
+\begin{lemma}
+\label{lem:hexagon}
+Let $ABCDEF$ be a closed hexagon of unit sides in the plane and $d_1,\dots,d_9$
+the lengths of its nine diagonals. Then $\sum_{i=1}^{9}\pk{5}{d_i}\ge1$.
+\end{lemma}
+
+\begin{proof}
+Six points, five colours: some pair is monochromatic. The sides are unit, hence
+bichromatic, so the pair is a diagonal. Take expectations.
+\end{proof}
+
+For the regular hexagon the diagonals are six of length $\sqrt3$ and three of
+length $2$, so the lemma reads $2p_{\sqrt3}+p_2\ge1/3$, against $\ge2/3$ from
+\Cref{thm:facet}. It is correct but slack exactly where we already know more.
+
+The value would therefore lie in non-regular unit hexagons, whose diagonals
+reach outside $\{\sqrt3,2\}$ --- and here there is a measured obstruction. Among
+$2\times10^5$ random closed unit hexagons, $72\,563$ had nine distinct diagonal
+lengths, six had eight, and none had fewer. Generically the inequality is spread
+across nine distances and is weak in each. A useful instance needs
+\emph{concentration}: a hexagon whose nine diagonals take two or three values.
+That is a Diophantine construction problem rather than a search, and we leave it
+open (\Cref{sec:openA}).
+
+\section{The table at $k=5$}
+
+Let $H$ be the wheel $W_6$: a centre adjacent to a rim $C_6$ of unit edges,
+seven vertices, twelve edges. Its non-unit pairs are six rim pairs at distance
+$\sqrt3$ and three antipodal rim pairs at distance $2$; the centre takes part in
+neither. For a colouring write $a$ for the number of monochromatic
+$\sqrt3$-pairs and $b$ for the number of monochromatic $2$-pairs, so that by
+isometry-invariance $\mathbf{E}[a/6]=p_{\sqrt3}$ and $\mathbf{E}[b/3]=p_2$. Every
+linear inequality $\alpha(a/6)+\beta(b/3)\ge\gamma$ holding pointwise across all
+colourings yields $\alpha p_{\sqrt3}+\beta p_2\ge\gamma$. The available
+inequalities are exactly the facets of the lower-left convex hull of the
+attainable points $(a/6,b/3)$.
+
+\begin{theorem}
+\label{thm:facet}
+For every proper $5$-colouring of the plane,
+\[
+2\,\pk{5}{\sqrt3} \;+\; \pk{5}{2} \;\ge\; \tfrac23 ,
+\]
+and this is the unique non-redundant inequality that $H$ produces in these two
+coordinates.
+\end{theorem}
+
+\begin{proof}
+Enumerate all proper $5$-colourings of $H$ and collect the attainable pairs
+$(a/6,b/3)$; there are eight. The Pareto minima are $(0,2/3)$, $(1/6,1/3)$,
+$(1/3,0)$. They are \emph{collinear} --- the middle point is the midpoint of the
+other two --- so the lower-left hull has a single facet, namely
+$x/(1/3)+y/(2/3)=1$.
+\end{proof}
+
+\begin{theorem}
+\label{thm:112}
+$\pk{5}{\sqrt3}\ \ge\ \tfrac1{12}$.
+\end{theorem}
+
+\begin{proof}
+Lemma 2 is $k$-free and $2\ge1/2$, so $\pk{5}{2}\le1/2$. Substituting into
+\Cref{thm:facet} gives $2\pk{5}{\sqrt3}\ge 2/3-1/2=1/6$.
+\end{proof}
+
+This is the first non-trivial quantitative bound for $5$-colourings of the
+plane.
+
+\begin{theorem}
+$\pk{5}{\sqrt7}\ \le\ \tfrac49$.
+\end{theorem}
+
+\begin{proof}
+Lemma 38 is $k$-free. Applied to the realisable configurations
+$(|AD|^2,|BD|^2,|CD|^2)=(3,4,7)$ and $(3,7,7)$ it gives
+$p_{\sqrt3}+p_2+p_{\sqrt7}\le1$ and $p_{\sqrt3}+2p_{\sqrt7}\le1$. The first is
+realised by $A=(0,0)$, $B=(1,0)$, $C=(\tfrac12,\tfrac{\sqrt3}{2})$,
+$D=(0,-\sqrt3)$. Adding, $2p_{\sqrt3}+p_2+3p_{\sqrt7}\le2$; with
+\Cref{thm:facet}, $3p_{\sqrt7}\le 2-2/3$.
+\end{proof}
+
+\begin{theorem}[correction at $k=4$]
+\label{thm:sqrt7four}
+$\pk{4}{\sqrt7}\ \le\ \tfrac13$, in place of the recorded $37/100$.
+\end{theorem}
+
+\begin{proof}
+From the $(3,4,7)$ instance of Lemma 38, $p_{\sqrt7}\le1-(p_{\sqrt3}+p_2)$, and
+Lemma 15 --- the $k=4$ counterpart of \Cref{thm:facet}, namely
+$\pk{4}{\sqrt3}+\pk{4}{2}\ge2/3$ --- gives $p_{\sqrt3}+p_2\ge2/3$.
+\end{proof}
+
+The wiki records $37/100$, citing Lemma 38 together with Corollary 16 --- that
+is, the \emph{symmetric} triple $(\sqrt3,\sqrt7,\sqrt7)$ with $p_{\sqrt3}\ge1/4$,
+giving $(1-1/4)/2=3/8$, subsequently refined. The \emph{asymmetric} triple
+$(\sqrt3,2,\sqrt7)$ appears not to have been used. All of \'Agoston's bounds~\cite{Agoston}
+($0.4839$, $0.48$, $323/675$) are weaker.
+
+\begin{theorem}[correction at $k=4$]
+\label{thm:certificate}
+$\displaystyle \pk{4}{2}\ \ge\ \frac{2838001}{9830400}\ =\ 0.2886964\ldots$,
+in place of the published $1/4$.
+\end{theorem}
+
+Its proof is a linear-programming certificate and is given in
+\Cref{sec:certificate}; the two corrections differ in character, the previous
+ones being three-line arguments and this one a verified computation.
+
+\begin{proposition}
+$\displaystyle \sup_{0<d<2}\pk{5}{d}\ \ge\ \tfrac14$.
+\end{proposition}
+
+\begin{proof}
+The $n$ points $e^{2\pi ij/n}$ all lie at distance $1$ from the origin, so they
+avoid the origin's colour and use at most four colours. With class sizes
+$n_1,\dots,n_4$, the number of monochromatic pairs among them is
+$\sum n_i(n_i-1)/2\ge n^2/8+O(n)$ by Cauchy--Schwarz, against $n^2/2$ pairs in
+total. Taking expectations and applying pigeonhole over the pair distances gives
+the claim.
+\end{proof}
+
+At $k=4$ the same argument leaves three colours available and gives $1/3$; that
+is Lemma 37.
+
+\subsection{Exact verification, and the structural content}
+\label{sec:hull}
+
+Every bound above was rebuilt in exact rational arithmetic --- enumeration of
+the colourings of $W_6$, exact points $(a/6,b/3)$, Pareto minima, facets of the
+lower-left hull --- with \texttt{Fraction} throughout and no floating point at
+any step.
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+& $k=4$ (control) & $k=5$ \\
+\midrule
+distinct $(a/6,b/3)$ & \textbf{4} & 8 \\
+Pareto minima & $(0,1),(\tfrac13,\tfrac13),(\tfrac23,0)$
+& $(0,\tfrac23),(\tfrac16,\tfrac13),(\tfrac13,0)$ --- \textbf{collinear} \\
+facets & \textbf{two:} $2p_{\sqrt3}+p_2\ge1$, $p_{\sqrt3}+p_2\ge\tfrac23$
+& \textbf{one:} $2p_{\sqrt3}+p_2\ge\tfrac23$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The control reproduces Figure 1 of de Grey's paper~\cite{deGrey2018} (four states) and Lemma 15
+verbatim. The structural content is in the last row. Writing
+\[
+2\pk{k}{\sqrt3}+\pk{k}{2}\;\ge\;c_k, \qquad c_4=1,\quad c_5=\tfrac23,
+\]
+the passage from four colours to five costs both the constant \emph{and a
+facet}. The Pareto frontier at $k=5$ is a segment, not a corner, and a segment
+yields one inequality where a corner yields two. This is the quantitative form
+of the density observation of Section~1. Note in passing that the first facet does not merely
+weaken, it becomes \emph{false}: the state with $(a/6,b/3)=(1/6,1/3)$ has
+$p_{\sqrt3}+p_2=1/2<2/3$.
+
+\section{The certificate for the improved bound on $\pk{4}{2}$}
+\label{sec:certificate}
+
+\subsection{The graphs}
+
+With $\omega_1=e^{i\pi/3}$ and $\omega_3=\tfrac{5+i\sqrt{11}}{6}$, put
+$\mathrm{hex}=\{0,1,\omega_1,1+\omega_1,\bar\omega_1,1+\bar\omega_1,2\}$ and
+$v=1+\omega_1$. The union
+\[
+G_{19}\;=\;\mathrm{hex}\ \cup\ \omega_3\!\cdot\!\mathrm{hex}\ \cup\
+\big(v+\omega_3(\mathrm{hex}-v)\big)
+\]
+has $19$ vertices and $45$ unit edges. Adjoining $2+\omega_1$ and $3$ gives
+Parshall's~\cite{Polymath16} $21$-vertex graph; deleting four further points gives Mixon's
+$G_{17}$: $17$ vertices, $38$ unit edges, all coordinates in
+$\Q(\sqrt3,\sqrt{11})$. We verified that no two distance classes coincide
+numerically, so the symbolic forms are canonical.
+
+\subsection{The linear program}
+
+Let $\mathcal{P}$ be the set of monochromatic \emph{profiles} of proper
+$4$-colourings, a profile being the $\{0,1\}$-vector recording which non-unit
+pairs are monochromatic. Averaging a random proper $4$-colouring of the plane
+over the isometries carrying the graph into position gives a distribution $w$ on
+$\mathcal{P}$ under which, for each pair $e$ in class $c$, the probability that
+$e$ is monochromatic equals $p_{d(c)}$. Hence
+\[
+\min\ x_{c^*}\quad\text{s.t.}\quad
+\sum_{r\in\mathcal{P}}w_r r_e = x_{c(e)}\ (\forall e),\qquad
+\sum_r w_r=1,\qquad w\ge0,\ x\ge0
+\]
+is a valid lower bound on $\pk{4}{2}$. This is the Mixon--Alexeev programme~\cite{Polymath16}; the
+only difference from its published use is that we impose the consistency
+constraint on \emph{all} distance classes at once rather than on
+$\{\sqrt3,2\}$ alone. Additional equality constraints can only raise the
+minimum, so the bound remains valid.
+
+\subsection{The dual certificate}
+
+By LP duality it suffices to exhibit $y\in\Q^{|E|}$ and $t\in\Q$ with
+\begin{itemize}[leftmargin=1.6em]
+\item[(C1)] $t+\sum_{e:\,r_e=1}y_e\le0$ for every profile $r\in\mathcal{P}$;
+\item[(C2)] $-\sum_{e\in c}y_e\le[\,c=c^*\,]$ for every class $c$.
+\end{itemize}
+Then $\pk{4}{2}\ge t$. Verification is a finite check in exact rational
+arithmetic.
+
+\subsection{Dropping the trimming: the better graph}
+\label{sec:trimming}
+
+$G_{17}$ is Parshall's point set~\cite{Polymath16} with four points deleted by Mixon. Those steps
+were taken to obtain a \emph{minimal $4$-chromatic} graph. That is a different
+objective from ours, and it costs us: we optimise a linear program whose
+variables are distance classes and whose constraints are colouring profiles, and
+trimming removes constraints faster than variables. Taking instead the plain
+three-hexagon union $G_{19}$ --- no Parshall extension, no Mixon deletions ---
+does strictly better.
+
+\begin{center}
+\begin{tabular}{@{}lrrrrl@{}}
+\toprule
+graph & $n$ & unit edges & classes & profiles & certified $\pk{4}{2}\ge$ \\
+\midrule
+published & --- & --- & --- & --- & $1/4=0.25$ \\
+$G_{17}$ & 17 & 38 & 25 & 1776 & $0.2775182$ \\
+$G_{19}$ & 19 & 45 & 28 & 3098 & $\mathbf{0.2886964}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{quote}
+\textbf{Transferable lesson.} When borrowing a construction from another paper,
+check whether it was optimised for \emph{your} criterion. Usually it was not.
+The better graph was sitting on the first line of our own build script.
+\end{quote}
+
+\subsection{Three honest remarks}
+
+\emph{The optimum is probably not a nice rational.} The LP value on $G_{19}$ is
+$0.2887084\ldots$ and our rational certificate is within $10^{-5}$ of it, so
+little is left on this graph. The optimum is necessarily rational --- all
+constraint coefficients are $0,\pm1$ and all right-hand sides $0$ or $1$ --- so
+no closed algebraic form is to be expected; the numerical proximity to
+$1/(2\sqrt3)=0.2886751$ is a coincidence.
+
+\emph{The certificate is not human-readable, and we did look.} Rounding the dual
+to a grid $\tfrac1q\Z$ and repairing (C2) yields a valid certificate for every
+$q$; we searched $q\le600$ for a legible one and found none.
+
+\emph{Where the strength comes from.} If $y$ is required to be constant on each
+distance class --- a natural restriction, and one that would make the
+certificate a short list of numbers --- the dual optimum collapses to $\mathbf0$.
+The improvement over $1/4$ therefore does not come from the classes as wholes
+but from \emph{differentiating weights within a class}: two pairs at the same
+distance play different roles depending on their position in the graph. This
+seems worth recording about the Mixon--Alexeev machine generally, and it is the
+reason no short certificate exists.
+
+\section{A calibrated negative}
+\label{sec:calibrated}
+
+
+A bound of $0$ says nothing unless the instrument is known to register a signal
+where one exists. This section supplies that control, and the control is the
+point of the section.
+
+\emph{Calibration at $k=4$.} On $G_{17}$ restricted to the two classes
+$\{\sqrt3,2\}$, enumeration returns \textbf{228 distinct profiles} --- precisely
+the number of columns Mixon reports~\cite{Polymath16} --- and the linear program returns
+$\pk{4}{2}\ge1/4$ \emph{exactly}. The instrument reproduces the published
+result, not something resembling it.
+
+\emph{Measurement at $k=5$.} On the same two classes: $4418$ profiles, lower
+bound $\mathbf0$ for both. Adjoining the three rational classes
+$\{1/3,\,5/3,\,4/3\}$: $176\,371$ profiles, lower bound $\mathbf0$ throughout.
+The only surviving non-trivial constraints are upper bounds, already implied by
+Lemmas 2 and 12.
+
+\emph{Why this is the expected outcome.} A positive lower bound on $p_d$ needs a
+gadget in which the $\{1,d\}$-graph fails to be $k$-colourable. At $k=4$ such
+failures are forced early, by the density observation of Section~1; a seventeen-vertex graph
+already feels the pressure. At $k=5$ there is none, and nothing for a small
+object to detect. The zero is a measurement, not a failure of method.
+
+It also strengthens \Cref{thm:112} in a way we could not otherwise have claimed:
+$1/12$ does not improve even when an independent published object that had never
+been brought to bear on this question is added to the constraint system.
+
+\begin{remark}[practical]
+The full program at $k=5$ over all $25$ classes has $482\,536$ profiles against
+$98$ pairs and does not terminate under HiGHS. The appropriate tool is column
+generation, which is also what a fractional-chromatic computation on these
+graphs would require; one implementation would serve both purposes.
+\end{remark}
+
+\section{Open questions arising}
+\label{sec:openA}
+
+We list five in decreasing order of how well-defined they are. The first three
+are not ours: they were raised inside Polymath16~\cite{Polymath16}, pursued briefly, and left.
+
+\begin{problem}[the semi-mono programme; P\'alv\"olgyi and de Grey, thread 12~\cite{Polymath16}]
+If $0<p_d<1/2$ over a range of $d$, one may add two non-unit edges to a
+unit-distance graph --- or identify two vertices --- and still obtain a lower
+bound on $\chrom$. De Grey named the relaxation \emph{semi-mono} and asked for a
+minimisation of the $409$-vertex graph under it. This appears never to have been
+carried out. It is the shortest route from a table of $p_d$ values to a human
+proof of $\chrom(\R^2)\ge5$, which was the original purpose of the table.
+\end{problem}
+
+\begin{problem}[forcing $p_{1/\sqrt3}$ exactly; de Grey, thread 5~\cite{Polymath16}]
+Is there a reasonably small graph containing a unit triangle and its centre
+which forces the centre to share a colour with one of the three vertices? This
+would give $\pk{4}{1/\sqrt3}=1/3$ exactly, the upper bound being Lemma 12. The
+$k=5$ analogue needs six points and connects directly to \Cref{lem:hexagon}.
+\end{problem}
+
+\begin{problem}[Tao's lemma, and an upper bound from it]
+\label{prob:tao}
+Let $G$ be a unit-distance graph containing the origin in which the origin
+cannot be bichromatic --- that is, in every proper $k$-colouring its colour is
+determined by the others. Then for every colouring $c$ of the plane and every
+$z$ with $c(0)\ne c(z)$ there is a non-zero vertex $v$ of $G$ with
+$c(v)\ne c(v+z)$. Tao~\cite{Polymath16} raised this hoping for a non-trivial \emph{upper} bound on
+$p_{|z|}$ and did not see how to obtain one. See Section~\ref{sec:openA} for what we
+found.
+\end{problem}
+
+\begin{problem}[concentrated unit hexagons]
+\Cref{lem:hexagon} becomes useful precisely when a closed hexagon of unit sides
+has its nine diagonals concentrated on two or three lengths. Does one exist? The
+question is Diophantine and appears not to have been asked.
+\end{problem}
+
+\begin{problem}[an analogue of Proposition 36]
+Proposition 36 is the only bridge in the $k=4$ theory from pointwise bounds to
+bounds on whole intervals of $d$. Without an analogue the $k=5$ table remains a
+set of isolated points, as the reader will have noticed it is. Unlike everything
+above, this asks for a proof design rather than a computation, and we have none
+to offer.
+\end{problem}
+
+\section{Appendix: proof of the half bound}
+\label{sec:appendixA}
+
+Let $d\ge1/2$ and let $C$ be the circle of radius $d$ about the origin. Since
+$2d\ge1$, a chord of length $1$ exists in $C$; let
+$\theta=2\arcsin\frac{1}{2d}\in(0,\pi]$ be the central angle it subtends. Fix
+$n\ge1$ and put $A_j=d\,e^{ij\theta}$ for $j=1,\dots,n$. Then every $A_j$ lies at
+distance $d$ from the origin, and $|A_j-A_{j+1}|=1$.
+
+Fix any proper colouring $c$ and let $S=\{j: c(A_j)=c(0)\}$. If $j$ and $j+1$
+both lay in $S$ then $A_j$ and $A_{j+1}$ would share a colour at distance $1$.
+So $S$ contains no two consecutive indices, whence $|S|\le\lceil n/2\rceil$.
+This holds pointwise. Taking expectations, $n\,\pk{k}{d}=\mathbf{E}|S|\le\lceil
+n/2\rceil$, and letting $n\to\infty$ gives $\pk{k}{d}\le1/2$. \qed
+
+Two remarks. First, the argument never mentions the number of colours: it uses
+only that a monochromatic unit distance is forbidden. Second, if $\theta$ happens
+to be $2\pi j/(2m+1)$ --- that is, if the chain closes into an odd cycle --- the
+same count gives $\pk{k}{d}\le m/(2m+1)<1/2$ outright. Such $d$ are dense in
+$[1/2,\infty)$; extending the strict bound to all $d>1/2$ is P\'alv\"olgyi's~\cite{Polymath16}
+refinement.
+
+\section{Appendix: ancillary files}
+\label{sec:ancillaryA}
+
+\begin{center}
+\begin{tabular}{@{}lp{7.4cm}@{}}
+\toprule
+file & what it does \\
+\midrule
+\texttt{verify\_hull.py} & enumerates all proper $k$-colourings of $H=W_6$ for
+$k=4,5$; computes exact points, Pareto minima, hull facets; asserts $1/12$,
+$4/9$, $1/3$ \\
+\texttt{build\_g17.py} & builds $G_{19}$ and $G_{17}$ over
+$\Q(\sqrt3,\sqrt{11})$ with assertions at $19/45$, $21$, $17/38$ \\
+\texttt{certificate.json}, \texttt{check\_certificate.py} & the dual pair for
+$G_{17}$; rebuilds the graph, enumerates the $1776$ profiles, checks (C1) and
+(C2) in \texttt{Fraction} arithmetic \\
+\texttt{certificate19.json}, \texttt{check\_certificate19.py} & the same for
+$G_{19}$, certifying $2838001/9830400$ \\
+\texttt{describe19.py} & prints the distance classes of $G_{19}$ in symbolic
+form \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+A reader wishing to check \Cref{thm:certificate} need run only the certificate
+checker. It does not import our linear-programming code and does not trust the
+solver: it re-derives the graph, re-derives the profiles, and verifies the
+rational inequalities.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

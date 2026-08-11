@@ -1,0 +1,60 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Paper A -- standalone
+%% Compile: pdflatex -> bibtex -> pdflatex -> pdflatex   (or: make)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[11pt,a4paper]{article}
+\input{shared_preamble}
+
+\title{\bfseries Monochromatic-pair probabilities\\ for $5$-colourings of the plane}
+\author{Chrysovalantis Tsirindanis\thanks{National Technical University of
+Athens. The author is an engineer, not a mathematician; this work is
+independent and unaffiliated. Corrections are welcome and will be
+acknowledged.}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+Assume the plane admits a proper $k$-colouring with no two points at distance
+$1$ sharing a colour, and randomise it over colour permutations and isometries;
+for each distance $d$ this defines $\pk{k}{d}$, the probability that two points
+at distance $d$ agree. The Polymath16 project developed an extensive theory of
+these quantities for $k=4$, and de Grey observed in 2019 that for $k\ge5$
+nothing was known beyond $p_1=0$ and $p_d<1/2$ for $d>1/2$.
+
+We run the Mixon--Alexeev linear-programming machinery at $k=5$. Enumerating
+the proper $5$-colourings of the wheel $W_6$ gives
+$2\pk{5}{\sqrt3}+\pk{5}{2}\ge\tfrac23$ as the unique non-redundant inequality in
+those coordinates, whence
+\[
+\pk{5}{\sqrt3}\ \ge\ \tfrac1{12},
+\]
+the first non-trivial quantitative bound for $5$-colourings of the plane, and
+$\pk{5}{\sqrt7}\le\tfrac49$. We give a criterion determining which of the
+forty-odd Polymath16 lemmas survive the passage from four colours to five ---
+whether the number of colours enters the \emph{proof}, not the statement --- and
+apply it lemma by lemma. Structurally, the Pareto frontier of the gadget's state
+space degenerates from a corner at $k=4$ to a segment at $k=5$, so one facet is
+lost as well as a constant.
+
+Two corrections to the published $k=4$ table follow: $\pk{4}{\sqrt7}\le1/3$ in
+place of $37/100$, by a three-line argument using an asymmetric triple that
+appears not to have been tried; and
+$\pk{4}{2}\ge\tfrac{2838001}{9830400}=0.2886964\ldots$ in place of $1/4$, by an
+exactly verified linear-programming certificate. The second was obtained by
+\emph{undoing} an optimisation performed in the source for a different
+objective.
+
+All numerical claims are reproduced by the ancillary scripts of the appendix;
+every assertion is decided in exact rational arithmetic, and floating point is
+used only to propose candidates.
+\end{abstract}
+
+\input{body}
+
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}

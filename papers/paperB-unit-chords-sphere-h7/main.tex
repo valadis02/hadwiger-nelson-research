@@ -1,0 +1,80 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Paper B -- standalone
+%% Compile: pdflatex -> bibtex -> pdflatex -> pdflatex   (or: make)
+%%
+%% CHECKED against arXiv:2504.11086 (v2, 22 Apr 2025):
+%%   - their bounds are for t in [-1,0] ("Obtuse almost-equiangular sets");
+%%     t = 1/2 is outside every bound in that paper, and they note explicitly
+%%     that 2(n+1) does not extend to positive t (Larman-Rogers).
+%%   - BUT their Theorem 5.2 gives MS(2) realizable for t >= t_{2,3}=0.2553,
+%%     hence alpha(3,1/2) >= 7 already follows from their work, and the
+%%     extremal configuration is the Moser spindle.
+%% The abstract and Section 1 have been rewritten accordingly: the claim is now
+%% the UPPER bound and the uniqueness.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[11pt,a4paper]{article}
+\input{shared_preamble}
+
+\title{\bfseries Unit chords on the sphere:\\ the extremal almost-equidistant
+number is $7$}
+\author{Chrysovalantis Tsirindanis\thanks{National Technical University of
+Athens. The author is an engineer, not a mathematician; this work is
+independent and unaffiliated. Corrections are welcome and will be
+acknowledged.}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+Give the unit sphere $\Sph(1)\subset\R^3$ the graph structure in which two
+points are adjacent when their Euclidean distance --- their chord, not their
+geodesic --- is $1$. Write $h$ for the largest number of points whose chord-$1$
+graph has independence number at most $2$; in the notation of Bachoc, Bekker,
+Moustrou and de Oliveira Filho this is $\indep(3,\tfrac12)$, since a unit chord
+means inner product $\tfrac12$. We prove
+\[
+h=7,
+\]
+and that the extremal configuration is unique up to isomorphism.
+
+The lower bound is not new, though it does not appear in this form: Theorem 5.2
+of Bachoc et al.\ shows that the $2$-Moser spindle $\mathrm{MS}(2)$ is
+$(3,t)$-realizable for $t\ge t_{2,3}=0.2553\ldots$, and $\tfrac12$ exceeds that
+threshold. What we add is the identification --- the extremal configuration
+\emph{is} the Moser spindle, with its $7$ vertices, $11$ edges and degree
+sequence $[3,3,3,3,3,3,4]$ --- together with an exact realisation of its Gram
+matrix over $\Q(\sqrt{46})$.
+
+The contribution is the \textbf{upper bound and the uniqueness}. The
+semidefinite and spectral bounds of Bachoc et al.\ are established for
+$t\in[-1,0]$, and they note explicitly that the bound $2(n+1)$ does not extend
+to positive $t$, the Larman--Rogers configuration giving $\indep(5,\tfrac15)\ge16$
+against $2(n+1)=12$. The value $t=\tfrac12$ therefore lies outside every bound
+in the literature. We show $h\le7$ by an argument that is short and specific to
+this inner product: the chord-$1$ graph is $K_4$-free, since four mutually
+adjacent unit vectors would have Gram matrix $\tfrac12(I+J)$, which is positive
+definite; with independence at most $2$ giving a triangle-free complement,
+$R(3,4)=9$ yields $h\le8$. Since the $(3,4)$-Ramsey graphs on eight vertices are
+\emph{unique} up to isomorphism, exactly one combinatorial candidate remains,
+and its exclusion reduces --- via a triangle-basis elimination in which
+non-edges are left entirely unconstrained --- to a single polynomial system
+whose Gr\"obner basis is $\{1\}$.
+
+We also record two structural facts about the spherical family. The vertex link
+is described in closed form, classifying the radii at which it closes into a
+cycle; and at radius exactly $1$ it never closes, by Niven's theorem, since the
+relevant cosine is $1/3$. The second closes the cone route
+$\chrom(\R^3)\ge1+\chrom(\Sph(1))$ by a number-theoretic rather than geometric
+obstruction, and explains why densifying spherical graphs at radius $1$ leaves
+the chromatic number at $4$ in every experiment: there is no primitive gadget to
+begin with.
+\end{abstract}
+
+\input{body}
+
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}

@@ -1,0 +1,300 @@
+\section{Statement and relation to known work}
+
+For $r>0$ let $\Sph(r)$ carry the graph whose vertices are the points of the
+sphere of radius $r$ and whose edges join points at Euclidean distance $1$
+(chords, not geodesics). Write $h$ for the largest number of points on $\Sph(1)$
+whose chord-$1$ graph has independence number at most $2$. Following Bachoc, Bekker, Moustrou and de Oliveira Filho~\cite{Bachoc2021}, a set of points on the unit sphere in
+$\R^n$ is \emph{$t$-almost equiangular} if among any three of them some pair has
+inner product $t$, and $\indep(n,t)$ denotes the maximum cardinality of such a
+set. A chord of length $1$ on the unit sphere means inner product $\tfrac12$, so
+\[
+h \;=\; \indep(3,\tfrac12).
+\]
+
+\begin{theorem}
+\label{thm:h7}
+$h=7$, with an extremal configuration unique up to isomorphism ($11$ edges,
+degree sequence $[3,3,3,3,3,3,4]$) and realisable over $\Q(\sqrt{46})$.
+\end{theorem}
+
+Two neighbouring lines of work stop short of this value. Bachoc et al.~\cite{Bachoc2021} give a
+semidefinite bound for $\indep(n,t)$ and prove $\indep(n,t)\le 2(n+1)$ for
+$t\le0$; our $t=\tfrac12$ is positive and outside that range. Rosenfeld~\cite{Rosenfeld1991} showed
+that an almost-equidistant set on a sphere of radius $1/\sqrt2$ in $\R^d$ has at
+most $2d$ points, and Bezdek and L\'angi~\cite{BezdekLangi} extended this to $r<1/\sqrt2$ with the
+bound $2d+2$; our radius is $r=1>1/\sqrt2$, again outside the range covered. The
+literature recorded only $3\le h\le8$.
+
+\begin{remark}[what is and is not new, stated plainly]
+The tables of the semidefinite bounds were checked~\cite{Bachoc2025}. Bachoc et al.~\cite{Bachoc2021} treat
+$t\in[-1,0]$ throughout, so $\indep(3,\tfrac12)$ is not among their computed
+values, and they observe that the bound $2(n+1)$ fails for positive $t$.
+However their Theorem~5.2~\cite{Bachoc2021} does settle the lower bound: $\mathrm{MS}(2)$ is
+$(3,t)$-realizable for $t\ge t_{2,3}=0.2553\ldots$, so $h\ge7$ follows from
+their work, and the extremal configuration below is the Moser spindle. The
+contribution of this paper is the upper bound $h\le7$, the uniqueness, and the
+exact Gram realisation.
+\end{remark}
+
+\paragraph{Wider context.} Chromatic numbers of spheres in their own right are
+surveyed by Malen~\cite{Malen2014}. Repeated and unit distances on spheres go
+back to Erd\H{o}s, Hickerson and Pach's work on Leo Moser's problem
+~\cite{ErdosHickersonPach1989}, with further bounds by Swanepoel and
+Valtr~\cite{SwanepoelValtr}; Soifer's survey~\cite{Soifer2008} places these
+questions within the broader Hadwiger--Nelson literature. The cone route
+discussed below is the one used to obtain the current best space bound
+$\chrom(\R^3)\ge6$, via de Grey's $59$-vertex unit-distance
+graph~\cite{deGrey2020R3}, itself building on the Polymath16
+project~\cite{Polymath16}.
+
+\section{Why the sphere}
+
+One route to $\chrom(\R^3)\ge7$ runs through the \emph{cone}: if $A$ is a point
+adjacent to everything else, then $\chrom(\R^3)\ge 1+\chrom(\Sph(1))$, since the
+neighbours of $A$ lie exactly on the unit sphere about it. Section~\ref{sec:niven}
+shows the cone route is closed, but the spherical questions it raises are not.
+
+The quantity matters for a second reason. Nechushtan's chain in $\R^3$~\cite{Nechushtan2002} hangs on
+the equality $n=5\indep$ for a $10$-point set, and that $10$ is the maximum size
+of an almost-equidistant set in $\R^3$~\cite{Gyorey2020} --- a proved extremal fact. The spherical
+analogue of that extremal fact is exactly $h$, and it feeds directly into the
+upper bound of the bound of the companion report.
+
+\section{The upper bound $h\le8$}
+
+\begin{lemma}[$K_4$-freeness]
+\label{lem:k4free}
+The chord-$1$ graph on $\Sph(1)$ contains no $K_4$.
+\end{lemma}
+
+\begin{proof}
+A chord of length $1$ on the unit sphere subtends $60^\circ$, so adjacency means
+inner product $\tfrac12$. Four mutually adjacent unit vectors would have Gram
+matrix $\tfrac12(I+J)$, which is positive definite, hence they would be linearly
+independent --- impossible in $\R^3$.
+\end{proof}
+
+\begin{lemma}
+For a graph $G$, $\indep(G)\le2$ if and only if the complement of $G$ is
+triangle-free.
+\end{lemma}
+
+\begin{theorem}
+$h\le8$.
+\end{theorem}
+
+\begin{proof}
+A set realising $h$ gives a graph with no $K_4$ and no independent set of size
+$3$. Since $R(3,4)=9$, such a graph has at most $8$ vertices.
+\end{proof}
+
+The recorded bound $h\le8$ was previously an assumption; the argument above
+makes it a proof, and it does more: the $(3,4)$-Ramsey graphs on $8$ vertices
+are \emph{unique} up to isomorphism --- the complement of the Wagner
+(M\"obius--Kantor) graph $V_8$. So at $n=8$ there is exactly one combinatorial
+candidate to rule out.
+
+\section{Exclusion of $n=8$}
+
+Let $G$ be a candidate and $\{a,b,c\}$ a triangle of $G$. The three
+corresponding unit vectors have Gram matrix $M=\tfrac12(I+J)$, which is
+invertible, so they form a basis of $\R^3$. For any other vertex $v$ put
+$t_v=(\langle v,a\rangle,\langle v,b\rangle,\langle v,c\rangle)^{\mathsf T}$.
+Then for all $u,v$,
+\[
+\langle u,v\rangle=t_u^{\mathsf T}M^{-1}t_v,\qquad
+|v|^2=t_v^{\mathsf T}M^{-1}t_v .
+\]
+The entries of $t_v$ equal $\tfrac12$ where $v$ is adjacent to a triangle vertex
+and are unknowns otherwise. Realisability becomes a polynomial system: one
+equation $|v|^2=1$ per remaining vertex, one equation $\langle
+u,v\rangle=\tfrac12$ per remaining edge. \emph{Non-edges are left entirely
+free} --- no inequality is imposed on them --- so an empty solution set is
+genuine non-realisability rather than an artifact of over-constraining.
+
+\begin{theorem}
+The complement of the Wagner graph is not realisable as a chord-$1$ graph on
+$\Sph(1)$. Consequently $h\le7$.
+\end{theorem}
+
+\begin{proof}
+The graph is $4$-regular with $16$ edges. Choosing the triangle $\{0,2,5\}$, the
+elimination above gives $12$ equations in $9$ unknowns over $\Q$. Its Gr\"obner
+basis (grevlex) is $\{1\}$, so the system has no solution even over $\CC$; a
+fortiori none over $\R$.
+\end{proof}
+
+Note the shape of the argument: the Ramsey bound did not merely restrict the
+size, it produced a \emph{single} graph, and uniqueness is what makes one
+Gr\"obner computation sufficient.
+
+\section{The construction at $n=7$}
+
+Among the $13\,842$ labelled graphs on $7$ vertices with $\indep\le2$ and
+$\omega\le3$ there are $9$ isomorphism classes, and exactly one is realisable.
+
+\begin{theorem}
+$h\ge7$. The extremal configuration is unique up to isomorphism.
+\end{theorem}
+
+\begin{proof}
+Take the Gram matrix $G$ with $G_{ii}=1$, $G_{ij}=\tfrac12$ on the $11$ edges,
+and on the ten non-edges the values
+\[
+-\tfrac13,\qquad \tfrac{37}{64},\qquad
+\tfrac18\pm\tfrac{\sqrt{46}}{16},\qquad
+\tfrac{23}{64}\pm\tfrac{3\sqrt{46}}{32}.
+\]
+Symbolic computation gives $\rank G=3$ exactly, with eigenvalues
+$\tfrac{57}{32}$, $\tfrac{167}{64}\pm\tfrac{\sqrt{21881}}{192}$ and $0$ with
+multiplicity $4$ --- all non-negative, so $G$ is positive semidefinite and is
+therefore the Gram matrix of seven vectors spanning $\R^3$. Every diagonal entry
+is $1$, so the vectors are unit; the $11$ prescribed entries are $\tfrac12$, so
+those pairs are at chord distance $1$; and no non-edge entry equals $\tfrac12$,
+so the graph realised is exactly the intended one.
+\end{proof}
+
+\begin{remark}[on method]
+The exact values were obtained by refining a least-squares realisation (residual
+$2.2\times10^{-16}$) with Newton's method on the vanishing $4\times4$ minors
+until $\max|\text{minor}|<10^{-56}$, then identifying each entry by integer
+relation detection at $60$ digits. At $9$ digits the same detection returned a
+\emph{spurious} quadratic with six-figure coefficients; algebraic identification
+needs far more precision than the apparent accuracy of the input suggests.
+Working with the Gram matrix rather than coordinates removes the rotational
+gauge and reduces the unknowns from $21$ to $10$.
+\end{remark}
+
+\section{Two structural facts about the spherical family}
+
+\subsection{The link, in closed form}
+\label{sec:link}
+
+A chord of length $1$ on a sphere of radius $r$ corresponds to angular distance
+$\alpha$ with $2r\sin(\alpha/2)=1$, so $\cos\alpha = 1-\frac{1}{2r^2}$. The
+neighbours of a vertex lie on a circle of angular radius $\alpha$; two of them
+at azimuthal separation $\Delta$ are adjacent precisely when
+\[
+\cos\Delta \;=\; \frac{\cos\alpha}{1+\cos\alpha}\;=\;\frac{2r^2-1}{4r^2-1}.
+\]
+
+Three consequences are read straight off the formula. The link has
+\emph{maximum degree $2$ at every radius}. The formula is defined exactly when
+$r\ge1/\sqrt3$; at $r=1/\sqrt3$ one has $\cos\Delta=-1$ (the link is a perfect
+matching), and as $r\to\infty$, $\Delta\to60^\circ$ and the link becomes a
+hexagon --- the plane as a limit. Hence $\Delta$ runs \emph{monotonically}
+through $[60^\circ,180^\circ]$ as $r$ runs through $[1/\sqrt3,\infty)$.
+
+\begin{proposition}[which radii close the link]
+\label{prop:radii}
+The link contains a cycle exactly when $\Delta/2\pi\in\Q$, in which case it is a
+disjoint union of $k$-cycles with $\Delta=2\pi j/k$, $\gcd(j,k)=1$. By the
+monotonicity above the condition is $j/k\in[\tfrac16,\tfrac12]$. Every rational
+in that interval gives a closing radius; there are countably many, dense in
+$[1/\sqrt3,\infty)$.
+\end{proposition}
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+$j/k$ & $\Delta$ & $r$ & comment \\
+\midrule
+$1/2$ & $180^\circ$ & $0.5773503$ & link is a matching \\
+$1/3$ & $120^\circ$ & $0.6123724$ & tetrahedron \\
+$1/4$ & $90^\circ$ & $0.7071068$ & octahedron \\
+$1/5$ & $72^\circ$ & $0.9510565$ & icosahedron \\
+$2/5$ & $144^\circ$ & $0.5877853$ & link $C_5$, pentagram step \\
+$\mathbf{2/7}$ & $102.857^\circ$ & $\mathbf{0.6503886}$ & \textbf{link $C_7$} \\
+$\mathbf{2/11}$ & $65.455^\circ$ & $\mathbf{1.3144594}$ & link $C_{11}$,
+radius $>1$ \\
+$1/6$ & $60^\circ$ & $\infty$ & the plane, giving $H$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}[a correction to an earlier draft]
+An earlier version of this work enumerated only the family $j=1$ and concluded
+that ``exactly three spheres close, the circumspheres of the three regular
+deltahedra''. That holds only for step $1$. With step $j\ge2$ the link is a star
+polygon, but \emph{as an abstract graph} it is still $C_k$, and only that
+matters for a chromatic argument. There are infinitely many closing radii, some
+with $r>1$.
+\end{remark}
+
+\subsection{At $r=1$ the link is never a cycle}
+\label{sec:niven}
+
+\begin{theorem}[Niven~\cite{Niven1956}]
+\label{thm:niven}
+On $\Sph(1)$ the link of every vertex is a disjoint union of paths; it never
+contains a cycle, at any scale.
+\end{theorem}
+
+\begin{proof}
+At $r=1$ the formula of Section~\ref{sec:link} gives $\cos\Delta=(1/2)/(3/2)=1/3$. By
+Niven's theorem~\cite{Niven1956}, if $\theta/\pi$ is rational and $\cos\theta$ is rational then
+$\cos\theta\in\{0,\pm\tfrac12,\pm1\}$. Since $1/3$ is not among these,
+$\Delta/\pi$ is irrational and $k\Delta\ne2\pi m$ for all integers $k,m$. Since
+the link has maximum degree $2$, a cycle would require exactly such a return.
+\end{proof}
+
+This closes the cone route: the cone requires radius exactly $1$, while the good
+wheel gadgets live at other radii. The two requirements are incompatible, and
+the incompatibility is proved rather than observed. It also explains,
+retrospectively, why densifying spherical graphs at $r=1$ left $\chrom$ stuck at
+$4$ in every experiment: there was no primitive gadget to begin with.
+
+Sharpened statement: $r=1$ is not merely ``a radius without a gadget''; it is
+the radius where $\cos\Delta=1/3$, a rational value outside Niven's set. The
+obstruction is \emph{number-theoretic}, not geometric.
+
+\section{Open questions}
+
+\begin{problem}
+$\chrom(\Sph(1))$. We can certify $\chrom\ge4$ on explicit graphs of a few
+hundred vertices, and Theorem~\ref{thm:niven} says the usual wheel-based machinery is
+unavailable. Is $\chrom(\Sph(1))=4$?
+\end{problem}
+
+\begin{problem}[higher dimensions]
+The argument of Lemma~\ref{lem:k4free} generalises verbatim: on $S^{d-1}(1)\subset
+\R^d$ the chord-$1$ graph is $K_{d+1}$-free, so
+$h_d\le R(3,d+1)-1$, giving $8,13,17,22$ for $d=3,4,5,6$. At $d=3$ the bound is
+off by exactly one. Is it off by one in general, and is the extremal
+configuration always unique? The elimination generalises too --- a $d$-clique is
+a basis of $\R^d$ --- but the number of Ramsey graphs to rule out is no longer
+$1$, and that uniqueness is what made the $d=3$ computation a single Gr\"obner
+basis.
+\end{problem}
+
+\begin{problem}
+Uniqueness at $n=7$ is verified here by exhaustion over the nine isomorphism
+classes. Is there a direct argument?
+\end{problem}
+
+\section{Appendix: ancillary scripts}
+\label{sec:ancillaryB}
+
+\begin{center}
+\begin{tabular}{@{}lp{7.6cm}@{}}
+\toprule
+script & what it asserts \\
+\midrule
+\texttt{h\_sphere.py} & the $n=8$ candidate is the complement of the Wagner
+graph; $\indep\le2$, $\omega\le3$ verified \\
+\texttt{h7.py} & $13\,842$ labelled graphs at $n=7$, $9$ isomorphism classes,
+exactly one realisable \\
+\texttt{h7\_gram.py} & Newton refinement to $\max|\text{minor}|<10^{-56}$;
+integer-relation identification at $60$ digits \\
+\texttt{h7\_theorem.py} & exact Gram over $\Q(\sqrt{46})$: rank $3$, positive
+semidefinite, no non-edge at $\tfrac12$ \\
+\texttt{h8\_impossible.py} & the triangle-basis elimination and the Gr\"obner
+basis $\{1\}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+All computations are exact except where explicitly stated; floating point is
+used only to propose candidates, never to decide one.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
