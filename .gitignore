@@ -1,0 +1,9 @@
+__pycache__/
+*.cnf
+*.drup
+code/two_distance/rup_checker
+papers/**/*.aux
+papers/**/*.log
+papers/**/*.out
+papers/**/*.bbl
+papers/**/*.blg
